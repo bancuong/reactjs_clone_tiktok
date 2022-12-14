@@ -1,1 +1,1 @@
-const string = "ẻwrwerwe";
+console.log("hihi");
