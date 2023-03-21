@@ -22,7 +22,6 @@ const SignUp = () => {
   const [loading, setLoading] = useState(false);
   const toast = useToast();
   const history = useHistory();
-
   const handleClick = () => setShow(!show);
 
   const postDetails = (pics) => {
@@ -49,7 +48,6 @@ const SignUp = () => {
         .then((res) => res.json())
         .then((data) => {
           setPic(data.url.toString());
-          console.log(data);
           setLoading(false);
         })
         .catch((err) => {

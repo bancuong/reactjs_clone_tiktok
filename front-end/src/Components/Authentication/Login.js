@@ -16,10 +16,11 @@ const Login = () => {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
+  // const email = "ngocng213achaubaui@gmail.com";
+  // const password = "123456";
   const [loading, setLoading] = useState(false);
   const toast = useToast();
   const history = useHistory();
-
   const handleClick = () => setShow(!show);
 
   const submitHandler = async () => {
@@ -48,6 +49,7 @@ const Login = () => {
         },
         config
       );
+      console.log(data, "231423");
       toast({
         title: "Login success",
         status: "success",
@@ -70,6 +72,7 @@ const Login = () => {
       setLoading(false);
     }
   };
+  // submitHandler();
   return (
     <VStack spacing="5px" color="black">
       <FormControl id="email" isRequired>
