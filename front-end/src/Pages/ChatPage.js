@@ -3,10 +3,10 @@ import { ChatState } from "../Context/ChatProvider";
 import SideDrawer from "../Components/miscellaneous/SideDrawer";
 import MyChats from "../Components/MyChat";
 import ChatBox from "../Components/ChatBox";
+import { useEffect, useState } from "react";
 
 const ChatPage = () => {
   const { user } = ChatState();
-  console.log("chatpage");
   return (
     <div style={{ width: "100%" }}>
       {user && <SideDrawer />}

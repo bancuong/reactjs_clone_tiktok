@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import ChatProvider from "../../Context/ChatProvider";
 
 const Login = () => {
   const [show, setShow] = useState(false);
@@ -33,6 +34,7 @@ const Login = () => {
         isClosable: true,
         position: "bottom",
       });
+      setLoading(false);
       return;
     }
     try {
@@ -49,7 +51,6 @@ const Login = () => {
         },
         config
       );
-      console.log(data, "231423");
       toast({
         title: "Login success",
         status: "success",
@@ -72,6 +73,7 @@ const Login = () => {
       setLoading(false);
     }
   };
+  // useEffect(() => {}, []);
   // submitHandler();
   return (
     <VStack spacing="5px" color="black">

@@ -29,12 +29,15 @@ const registerUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error("Failed to create new user");
+    throw new Error("Fail to create new user");
   }
 });
 
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
+  console.log(email, "email");
+  console.log(password, "password");
+
   const user = await User.findOne({ email });
   if (user) {
     const isMatch = await user.matchPassword(password);
@@ -49,7 +52,7 @@ const authUser = asyncHandler(async (req, res) => {
     }
   } else {
     res.status(400);
-    throw new Error("Failed to create new user");
+    throw new Error("Fail to login");
   }
 });
 

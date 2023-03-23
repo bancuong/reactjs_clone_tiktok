@@ -14,6 +14,7 @@ import Login from "../Components/Authentication/Login";
 import Signup from "../Components/Authentication/Signup";
 import { useHistory } from "react-router-dom";
 const Homepage = () => {
+  console.log("home1");
   const history = useHistory();
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("userInfo"));
@@ -23,7 +24,6 @@ const Homepage = () => {
       history.push("/");
     }
   }, [history]);
-  console.log("homepage");
   return (
     <>
       <Container maxW="xl" centerContent>
