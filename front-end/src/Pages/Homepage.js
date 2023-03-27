@@ -34,7 +34,7 @@ const Homepage = () => {
           bg={"white"}
           w="100%"
           m="40px 0 15px 0"
-          borderRadius="1g"
+          borderRadius="lg"
           borderWidth="1px"
         >
           <Text fontSize="4xl" fontFamily={"Work sans"} color="black">
@@ -45,7 +45,7 @@ const Homepage = () => {
           bg={"white"}
           w="100%"
           p={4}
-          borderRadius="1g"
+          borderRadius="lg"
           color={"black"}
           borderWidth={"1px"}
         >

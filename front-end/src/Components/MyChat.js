@@ -45,7 +45,7 @@ const MyChats = () => {
       padding={3}
       background="white"
       width={{ base: "100%", md: "31%" }}
-      borderRadius="1g"
+      borderRadius="lg"
       borderWidth={"1px"}
     >
       <Box
@@ -76,7 +76,7 @@ const MyChats = () => {
         background={"#F8F8F8"}
         width="100%"
         height={"100%"}
-        borderRadius="1g"
+        borderRadius="lg"
         overflowY={"hidden"}
       >
         {chats ? (
@@ -89,9 +89,10 @@ const MyChats = () => {
                 color={selectedChat === chat ? "white" : "black"}
                 paddingX={3}
                 paddingY={2}
-                borderRadius="1g"
+                borderRadius="lg"
                 key={chat._id}
               >
+                {/* {console.log("123", chat)} */}
                 <Text>
                   {!chat.isGroupChat
                     ? getSender(loggedUser, chat.users)

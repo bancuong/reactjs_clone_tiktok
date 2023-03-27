@@ -35,9 +35,8 @@ const registerUser = asyncHandler(async (req, res) => {
 
 const authUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  console.log(email, "email");
-  console.log(password, "password");
-
+  // console.log(email, "email");
+  // console.log(password, "password");
   const user = await User.findOne({ email });
   if (user) {
     const isMatch = await user.matchPassword(password);
@@ -49,15 +48,20 @@ const authUser = asyncHandler(async (req, res) => {
         pic: user.pic,
         token: generateToken(user._id),
       });
+    } else {
+      res.status(400);
+      throw new Error("Wrong email or password");
     }
   } else {
     res.status(400);
-    throw new Error("Fail to login");
+    throw new Error("Wrong email or password");
   }
 });
 
 //api/user?search=chubedan
 const allUser = asyncHandler(async (req, res) => {
+  const user = req.user;
+  // console.log(req.user._id);
   const keyword = req.query.search
     ? {
         $or: [
@@ -68,7 +72,7 @@ const allUser = asyncHandler(async (req, res) => {
     : {};
   // const users = await User.find(...keyword, { _id: { $ne: req.user._id } });
   // const users = await User.find(keyword).find({ _id: { $ne: req.user._id } }); // cant find id
-  const users = await User.find(keyword); // without account id
+  const users = await User.find({ ...keyword, _id: { $ne: user._id } }); // without account id
   return res.send(users);
 });
 
