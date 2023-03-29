@@ -123,13 +123,13 @@ const SideDrawer = () => {
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="2x1" fontFamily="Work sans">
+        <Text fontSize="2xl" fontFamily="Work sans">
           Talk-A-Tive
         </Text>
         <div>
           <Menu>
             <MenuButton padding={1}>
-              <BellIcon fontSize={"2x1"} margin={1} />
+              <BellIcon fontSize={"2xl"} margin={1} />
             </MenuButton>
             {/* <MenuList></MenuList> */}
           </Menu>

@@ -21,3 +21,22 @@ export const getSender = (loggedUser, users) => {
   // console.log("===========");
   // return users[0]._id === loggedUser._id ? users[1].name : users[0].name;
 };
+
+export const getSenderFull = (loggedUser, users) => {
+  let result;
+  // console.log(users, "users1");
+
+  if (loggedUser && users && users.length && users.length > 1) {
+    if (
+      users[0] &&
+      users[0]._id &&
+      loggedUser._id &&
+      users[0]._id === loggedUser._id
+    ) {
+      result = users[1];
+    } else {
+      result = users[0];
+    }
+  }
+  return result;
+};

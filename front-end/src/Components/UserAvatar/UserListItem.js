@@ -19,7 +19,7 @@ const UserListItem = ({ user, handleFunction }) => {
       paddingX={3}
       paddingY={2}
       marginBottom={2}
-      borderRadius="1g"
+      borderRadius="lg"
     >
       <Avatar
         marginRight={2}

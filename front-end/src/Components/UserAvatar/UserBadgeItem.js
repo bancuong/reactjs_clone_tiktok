@@ -15,10 +15,10 @@ const UserBadgeItem = ({ user, handleFunction }) => {
       backgroundColor="purple"
       color={"white"}
       cursor={"pointer"}
-      onClick={handleFunction}
+      // onClick={handleFunction}
     >
       {user.name}
-      <CloseIcon pl={1} />
+      <CloseIcon pl={1} onClick={handleFunction} />
     </Box>
   );
 };
