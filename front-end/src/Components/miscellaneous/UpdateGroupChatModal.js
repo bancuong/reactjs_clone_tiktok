@@ -22,7 +22,7 @@ import { ChatState } from "../../Context/ChatProvider";
 import UserBadgeItem from "../UserAvatar/UserBadgeItem";
 import UserListItem from "../UserAvatar/UserListItem";
 
-const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
+const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain, fetchMessage }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { selectedChat, setSelectedChat, user } = ChatState();
@@ -65,6 +65,7 @@ const UpdateGroupChatModal = ({ fetchAgain, setFetchAgain }) => {
       user1._id === user._id ? setSelectedChat() : setSelectedChat(data);
       setFetchAgain(!fetchAgain);
       setLoading(false);
+      fetchMessage();
     } catch (error) {
       toast({
         title: "Error occured",
