@@ -26,6 +26,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import ChatLoading from "../ChatLoading";
 import UserListItem from "../UserAvatar/UserListItem";
+import { getSender } from "../../config/ChatLogics";
 
 const SideDrawer = () => {
   const [search, setSearch] = useState("");
@@ -34,7 +35,14 @@ const SideDrawer = () => {
   const [loadingChat, setLoadingChat] = useState();
   // const [selectedChat, setSelectedChat] = useState();
 
-  const { user, setSelectedChat, chats, setChats } = ChatState();
+  const {
+    user,
+    setSelectedChat,
+    chats,
+    setChats,
+    notification,
+    setNotification,
+  } = ChatState();
   const history = useHistory();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -131,7 +139,16 @@ const SideDrawer = () => {
             <MenuButton padding={1}>
               <BellIcon fontSize={"2xl"} margin={1} />
             </MenuButton>
-            {/* <MenuList></MenuList> */}
+            <MenuList pl={2}>
+              {!notification.length && "No new messages"}
+              {notification.map((n) => {
+                <MenuItem key={n._id}>
+                  {n.chat.isGroupChat
+                    ? `New message in ${n.chat.chatName}`
+                    : `New message from ${getSender(user, n.chat.users)}`}
+                </MenuItem>;
+              })}
+            </MenuList>
           </Menu>
           <Menu>
             <MenuButton as={Button} rightIcon={<ChevronDownIcon />}>

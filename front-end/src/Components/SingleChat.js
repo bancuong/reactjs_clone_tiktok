@@ -18,6 +18,8 @@ import axios from "axios";
 import "./styles.css";
 import ScrollableChat from "./UserAvatar/ScrollableChat";
 import io from "socket.io-client";
+import Lottie from "lottie-react";
+import animationData from "../animations/typing.json";
 
 const ENDPOINT = "http://localhost:5000";
 let socket, selectedChatCompare;
@@ -30,7 +32,17 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
 
-  const { user, selectedChat, setSelectedChat } = ChatState();
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSetting: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+
+  const { user, selectedChat, setSelectedChat, notification, setNotification } =
+    ChatState();
   const toast = useToast();
 
   const fetchMessages = async () => {
@@ -133,6 +145,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         selectedChatCompare._id !== newMessageReceived.chat._id
       ) {
         // notification
+        if (!notification.includes(newMessageReceived)) {
+          setNotification([newMessageReceived, ...notification]);
+          setFetchAgain(!fetchAgain);
+        }
       } else {
         setMessages([...messages, newMessageReceived]);
       }
@@ -205,7 +221,22 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               </div>
             )}
             <FormControl onKeyDown={sendMessage} isRequired marginTop={3}>
-              {isTyping ? <div>Loading...</div> : <></>}
+              {isTyping ? (
+                <div>
+                  <Lottie
+                    animationData={animationData}
+                    // options={defaultOptions}
+                    style={{
+                      width: 60,
+                      height: 60,
+                      marginBottom: 15,
+                      marginLeft: 0,
+                    }}
+                  />
+                </div>
+              ) : (
+                <></>
+              )}
 
               <Input
                 variant={"filled"}
